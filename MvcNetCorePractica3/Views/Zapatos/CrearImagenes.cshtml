@@ -1,0 +1,47 @@
+﻿@model List<Zapato>
+
+
+<h1>Crear Imagenes Zapas</h1>
+
+<form>
+    <label>Seleccione zapato :</label>
+    <select name="idproducto" class="form-control">
+        @foreach (Zapato zapa in Model)
+        {
+            <option value="@zapa.IdProducto">@zapa.Nombre</option>
+        }
+    </select>
+    <label>Id Imagen: </label>
+    <input type="number" name="idimagen" class="form-control"/>
+    <label>Introduzca imagen: </label>
+    <input type="text" name="imagen" class="form-control"/>
+    <button class="btn btn-info">
+        Insertar
+    </button>
+</form>
+<button id="AgregarInput">
+    Agregar Input
+</button>
+<div id="caja">
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#AgregarInput").click(function () {
+
+                var labelNuevo = "<label>Imagen: </label>";
+                var inputNuevo = "<input type='text' name='imagen' class='form-control'/>";
+
+                $("#caja").append(labelNuevo,inputNuevo);
+
+            })
+
+        })
+
+    </script>
+
+} 

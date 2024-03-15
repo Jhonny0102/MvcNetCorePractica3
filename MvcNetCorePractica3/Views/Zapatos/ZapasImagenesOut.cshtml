@@ -1,0 +1,76 @@
+﻿@model List<ImagenZapatos>
+
+@{
+    Zapato zapas = ViewData["ZAPATILLA"] as Zapato;
+    int registros = 0;
+    int numeroPagina = 1;
+
+    if (ViewData["REGISTROS"] != null)
+    {
+        registros = (int)ViewData["REGISTROS"];
+    }
+}
+
+<h1>Imagenes Zapatillas</h1>
+
+<div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Nombre: @zapas.Nombre
+        </li>
+        <li class="list-group-item">
+            Descripcion: @zapas.Descripcion
+        </li>
+        <li class="list-group-item">
+            Precio: @zapas.Precio
+        </li>
+    </ul>
+</div>
+
+
+<div>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <a asp-controller="Zapatos"
+               asp-action="ZapasImagenesOut"
+               asp-route-posicion="1"
+               asp-route-idproducto="@ViewData["IDPRODUCTO"]">
+                Primero
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Zapatos"
+               asp-action="ZapasImagenesOut"
+               asp-route-posicion="@ViewData["ANTERIOR"]"
+               asp-route-idproducto="@ViewData["IDPRODUCTO"]">
+                Anterior
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Zapatos"
+               asp-action="ZapasImagenesOut"
+               asp-route-posicion="@ViewData["SIGUIENTE"]"
+               asp-route-idproducto="@ViewData["IDPRODUCTO"]">
+                Siguiente
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Zapatos"
+               asp-action="ZapasImagenesOut"
+               asp-route-posicion="@ViewData["ULTIMO"]"
+               asp-route-idproducto="@ViewData["IDPRODUCTO"]">
+                Ultimo
+            </a>
+        </li>
+    </ul>
+</div>
+
+<hr />
+
+<h2 style="color:blue">
+    Registro @ViewData["POSICION"] de @ViewData["ULTIMO"]
+</h2>
+@foreach (ImagenZapatos img in Model)
+{
+    <img src="@img.Imagen" style="width:250px;height:250px" />
+}

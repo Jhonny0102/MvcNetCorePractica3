@@ -1,0 +1,12 @@
+﻿@model List<Zapato>
+
+<h1>Lista de Zapatos</h1>
+
+<ul class="list-group">
+    @foreach (Zapato zapas in Model)
+    {
+        <li class="list-group-item">
+            <a asp-controller="Zapatos" asp-action="ZapasImagenesOut" asp-route-idproducto="@zapas.IdProducto" class="btn btn-outline-success">@zapas.Nombre</a>
+        </li>
+    }
+</ul>
